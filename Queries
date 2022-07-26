@@ -1,0 +1,214 @@
+use department;
+
+
+CREATE TABLE DEPT
+       (DEPT_ID INT(2),
+        DNAME VARCHAR(14),
+        LOC VARCHAR(15),
+        DATE_INSERTED DATE,
+        DATE_LASTUPDATED DATE,
+        PRIMARY KEY(DEPT_ID));
+
+
+INSERT INTO DEPT (DEPT_ID,DNAME,LOC,DATE_INSERTED,DATE_LASTUPDATED)
+VALUES (15, 'Engineering','Bloomington', current_timestamp(),current_timestamp()),
+(23, 'Service','Minneapolis', current_timestamp(),current_timestamp()),
+(17, 'Security','Minneapolis', current_timestamp(),current_timestamp()),
+(10,'Accounting', 'Richfield',current_timestamp(),current_timestamp());
+
+select * from dept;
+
+CREATE TABLE SALGRADE
+       (GRADE_ID INT(3),
+        LOSAL NUMERIC(7,2),
+        HISAL NUMERIC(7,2),
+        PRIMARY KEY(GRADE_ID));
+        
+INSERT INTO SALGRADE (GRADE_ID,LOSAL,HISAL)
+VALUES (124, 34566.23,45555.34),
+(333, 45673.77,54789.77),
+(453, 55342.98,65234.90),
+(156,32500.00,38600.00),
+(188,28500.00,35600.00);
+
+select * from SALGRADE;
+
+CREATE TABLE EMP
+       (EMP_ID INT(4),
+        E_LAST_NAME VARCHAR(20),
+        E_FIRST_NAME VARCHAR(15),
+        JOB VARCHAR(9),
+        MGR_ID INT(4),
+        HIREDATE DATE,
+        SAL NUMERIC(7,2),
+        GRADE_ID INT(3),
+        COMM NUMERIC(7,2),
+        DEPT_ID INT(2),
+        DATE_INSERTED DATE,
+        DATE_LASTUPDATED DATE,
+        PRIMARY KEY(EMP_ID),
+        FOREIGN KEY (DEPT_ID) REFERENCES DEPT(DEPT_ID),
+        FOREIGN KEY (GRADE_ID) REFERENCES SALGRADE(GRADE_ID));
+
+
+
+INSERT INTO EMP (EMP_ID,E_LAST_NAME,E_FIRST_NAME,JOB,
+MGR_ID,HIREDATE,SAL,GRADE_ID,COMM,DEPT_ID,DATE_INSERTED,DATE_LASTUPDATED)
+VALUES (4440, 'Mash','John', 'Guard',5432,'2016-02-15', 34899.56,124,null,17,current_timestamp(),current_timestamp()),
+(4441, 'Smith','Gale', 'Guard',5432,'2016-01-23', 35000.16,124,null,17,current_timestamp(),current_timestamp()),
+(4442, 'Leana','Jones', 'Guard',5432,'2016-04-05', 35100.22,124,null,17,current_timestamp(),current_timestamp()),
+(4443, 'Smith','Sam', 'Guard',5432,'2017-02-02', 36376.03,124,null,17,current_timestamp(),current_timestamp()),
+(4444, 'Smith','Sarah', 'Guard',5432,'2017-02-26', 36555.71,124,null,17,current_timestamp(),current_timestamp()),
+(4445, 'Phillip','Kent', 'Guard',5432,'2018-05-06', 38446.13,124,null,17,current_timestamp(),current_timestamp()),
+(4446, 'Miller','Aby', 'Guard',5432,'2018-06-01', 39255.09,124,null,17,current_timestamp(),current_timestamp()),
+(7342, 'Morris','David', 'Developer',7634,'2016-01-12', 58546.34,453,null,15,current_timestamp(),current_timestamp()),
+(7343, 'Smith','Jonn', 'Developer',7634,'2016-01-27', 59100.14,453,null,15,current_timestamp(),current_timestamp()),
+(7344, 'Jones','Breanna', 'Developer',7634,'2016-04-02', 59600.09,453,null,15,current_timestamp(),current_timestamp()),
+(7345, 'Smith','David', 'Developer',7634,'2017-02-03', 60000.77,453,null,15,current_timestamp(),current_timestamp()),
+(7346, 'Smith','Michael', 'Developer',7634,'2017-03-13', 60555.44,453,null,15,current_timestamp(),current_timestamp()),
+(7347, 'Smith','Jayden', 'Developer',7634,'2017-04-04', 61000.22,453,null,15,current_timestamp(),current_timestamp()),
+(7348, 'Strong','David', 'Developer',7634,'2017-05-15', 61345.45,453,null,15,current_timestamp(),current_timestamp()),
+(7349, 'Mohhamad','Tariq', 'Developer',7634,'2018-03-05', 63446.12,453,null,15,current_timestamp(),current_timestamp()),
+(7350, 'Mohhamad','Ismel', 'Developer',7634,'2018-03-24', 63781.33,453,null,15,current_timestamp(),current_timestamp()),
+(7930,'Miller','Kent','Clerk',7782,'2016/01/12',46000.00,333,NULL,10,current_timestamp(),current_timestamp()),
+(7931,'Smith','Fela','Clerk',7782,'2016/01/17',46210.21,333,NULL,10,current_timestamp(),current_timestamp()),
+(7932,'Smith','Hovid','Clerk',7782,'2017/03/03',48500.51,333,NULL,10,current_timestamp(),current_timestamp()),
+(7933,'Kuti','Femi','Clerk',7782,'2017/03/17',48788.27,333,NULL,10,current_timestamp(),current_timestamp()),
+(7934,'Lekan','Trey','Clerk',7782,'2017/04/14',49000.33,333,NULL,10,current_timestamp(),current_timestamp()),
+(7935,'Smith','Samuel','Clerk',7782,'2018/05/10',52000.55,333,NULL,10,current_timestamp(),current_timestamp()),
+(7936,'Richard','Pryer','Clerk',7782,'2018/05/12',52300.00,333,NULL,10,current_timestamp(),current_timestamp()),
+(5670,'Jonah','Nene','Marketer',5677,'2016/01/17',32867.10,156,17.87,23,current_timestamp(),current_timestamp()),
+(5671,'Smith','Jonn','Marketer',5677,'2016/02/27',33005.00,156,13.23,23,current_timestamp(),current_timestamp()),
+(5672,'Drew','Aby','Marketer',5677,'2017/02/19',34577.00,156,17.33,23,current_timestamp(),current_timestamp()),
+(5673,'Smith','Yake','Marketer',5677,'2017/03/14',34657.00,156,12.87,23,current_timestamp(),current_timestamp()),
+(5674,'olan','Collins','Marketer',5677,'2018/04/09',35507.00,156,11.87,23,current_timestamp(),current_timestamp()),
+(5675,'Shriek','Dave','Marketer',5677,'2018/04/20',35787.00,156,13.87,23,current_timestamp(),current_timestamp()),
+(5800, 'Lilly','Susan', 'Driver',3478,'2016-01-01', 33769.09,188,54.75,23,current_timestamp(),current_timestamp()),
+(5801,'Collins','Aby','Driver',3478,'2016/02/03',30367.00,188,11.87,23,current_timestamp(),current_timestamp()),
+(5802,'Smith','John','Driver',3478,'2016/02/15',30267.00,188,23.87,23,current_timestamp(),current_timestamp()),
+(5803,'Jones','Steve','Driver',3478,'2016/03/20',30357.00,188,16.87,23,current_timestamp(),current_timestamp()),
+(5804,'Smith','Mark','Driver',3478,'2017/01/23',32517.00,188,17.77,23,current_timestamp(),current_timestamp()),
+(5805,'Adam','Breanna','Driver',3478,'2017/04/21',32637.00,188,14.87,23,current_timestamp(),current_timestamp()),
+(5806,'Polla','Bob','Driver',3478,'2017/07/11',32755.00,188,17.11,23,current_timestamp(),current_timestamp()),
+(5807,'Smith','Jonn','Driver',3478,'2018/04/21',33777.00,188,17.55,23,current_timestamp(),current_timestamp()),
+(5808,'Smith','Terrence','Driver',3478,'2018/04/23',33447.00,188,17.32,23,current_timestamp(),current_timestamp()),
+(3420,'Smith','Jonn','C_Service',2345,'2016/01/28',29337.00,188,18.88,23,current_timestamp(),current_timestamp()),
+(3421,'Smith','Phillip','C_Service',2345,'2016/02/08',29347.00,188,13.34,23,current_timestamp(),current_timestamp()),
+(3422,'Uvah','Macy','C_Service',2345,'2016/04/19',31345.00,188,11.77,23,current_timestamp(),current_timestamp()),
+(3423,'Mohhamad','Ashid','C_Service',2345,'2017/05/19',32123.00,188,12.07,23,current_timestamp(),current_timestamp()),
+(3424,'Kunt','Paul','C_Service',2345,'2017/05/23',32276.00,188,12.00,23,current_timestamp(),current_timestamp()),
+(3425,'Wey','Delli','C_Service',2345,'2018/02/19',33345.00,188,11.77,23,current_timestamp(),current_timestamp());
+
+
+select * from EMP;
+
+#Fix table code
+drop table dept;
+drop table salgrade;
+drop table emp;
+
+
+
+#1.	Create a procedure that takes in a DNAME (Department Name) value as an incoming parameter 
+#and show the total number of employees for that department, include DEPT_ID, DNAME, 
+#and a count of the number of employees in that department as output. 
+
+DELIMITER //
+create procedure count_emp_dept(IN Dept_Name varchar(20))
+begin
+select dept.DEPT_ID,dept.DNAME,count(emp.EMP_ID) as number_of_employees
+from dept join emp
+on dept.DEPT_ID = emp.DEPT_ID
+where dept.DNAME = Dept_Name;
+end; //
+DELIMITER ;
+
+#Test procedure
+call count_emp_dept('Service');
+
+#Fix procedure code
+drop procedure count_emp_dept;
+
+
+#2.	Create a procedure that takes in a Grade_ID value as in incoming parameter 
+#and show all the Employee’s that have that Salary grade.  
+#The output should be: employee full name (concatenate first and last name), 
+#the employee’s salary, and salary range (losal – hisal) for that salary grade. 
+
+DELIMITER //
+create procedure emp_salary_range(IN grade_id int)
+begin
+select CONCAT(emp.E_FIRST_NAME,
+            ' ',
+            emp.E_LAST_NAME) AS Employee_full_Name,
+            emp.SAL as employee_salary,
+            (salgrade.LOSAL - salgrade.HISAL) as salary_grade
+            from emp join salgrade on emp.GRADE_ID = salgrade.GRADE_ID
+            where emp.GRADE_ID = grade_id;
+end; //
+DELIMITER ;
+
+#Test procedure
+call emp_salary_range(188);
+
+#Fix procedure code
+drop procedure emp_salary_range;
+
+#3.	Create the best index (show create command) that would be helpful 
+#to both these queries, and prove the index is being used with the Explain command:   
+
+Select E_LAST_NAME, HIREDATE, SAL from emp where E_LAST_NAME = 'Smith';
+Select E_LAST_NAME, E_FIRST_NAME, DEPT_ID from emp where E_LAST_NAME = 'Smith'
+and E_FIRST_NAME = 'jonn';
+
+CREATE INDEX emp_info ON emp (E_LAST_NAME,E_FIRST_NAME);
+
+EXPLAIN Select E_LAST_NAME, HIREDATE, SAL from emp where E_LAST_NAME = 'Smith';
+EXPLAIN Select E_LAST_NAME, E_FIRST_NAME, DEPT_ID from emp where E_LAST_NAME = 'Smith'
+and E_FIRST_NAME = 'jonn';
+
+#Fix index code
+drop index emp_info on emp;
+
+#4.	Create a procedure that has one input parameter a value for MGR_ID , and an out parameter 
+#to return the employee id with the oldest hire date for that manager 
+#(so the most senior employee that reports to that manager).  
+#You will have to do a little research on the output parameter and how to use it.
+
+DELIMITER //
+CREATE PROCEDURE mgr_oldest_emp (IN MGR_ID INT, OUT oldest_EMP_ID INT)
+	BEGIN
+    DECLARE oldest_high_date date;
+SELECT MIN(emp.HIREDATE) INTO oldest_high_date FROM emp;
+SELECT EMP_ID INTO oldest_EMP_ID FROM emp WHERE emp.HIREDATE = oldest_high_date;
+       END;//
+DELIMITER ;
+
+call mgr_oldest_emp(3478,@oldest_EMP_ID);
+select @oldest_EMP_ID as most_senior_employee_id;
+
+#Fix procedure code
+drop procedure mgr_oldest_emp;
+
+#5.	Which one of these should have an index (explain why)?  
+#A query that runs every hour with MGR_ID in the PREDICATE clause, 
+#or a query that runs once a month with DEPT_ID in the WHERE clause?  
+#Show the create index command for the one you picked.  
+#Create a SELECT query that will utilize the index you created and prove it was used with the Explain command. 
+
+#Answer:
+
+/* A query that runs every hour with MGR_ID in the PREDICATE clause Because an index is basically 
+a data structure that is used to store column values, looking up those values becomes much faster. 
+And, if an index is using the most used data structure type – a B- tree – then the data structure 
+is also sorted. Having the column values be sorted can be a major performance enhancement and database 
+indexes also store pointers to the corresponding rows in the table which is used to retrieve the other 
+information for that row. For a query that runs every hour an index will improve the performance of the 
+database system as well as make the queries faster as the whole point of having an index is to speed up 
+search queries by essentially cutting down the number of records/rows in a table that need to be examined. */
+
+#Sample query
+select count(emp.emp_id) from emp where MGR_ID = 3478;
+            
+CREATE INDEX count_emp_mgr ON emp (MGR_ID);
+EXPLAIN select count(emp.emp_id) from emp where MGR_ID = 3478;
